@@ -27,7 +27,7 @@ const router = createRouter({
 
     },
     {
-      path: '/toy/details',
+      path: '/toy/:toyId',
       name: 'toy-details',
       component: toyDetails
 
@@ -37,6 +37,7 @@ const router = createRouter({
       name: 'toy-edit',
       component: toyEdit
     },
+
   ]
 });
 

@@ -41,6 +41,12 @@ export default {
     toyToshow() {
       if (!this.filterBy) return this.toys;
       const regex = new RegExp(this.filterBy.name, "i");
+      if (this.filterBy.isInStock)
+        console.log("isOnStock", this.filterBy.isInStock);
+      return this.toys.filter(
+        (toy) =>
+          regex.test(toy.name) && this.toys.filter((toy) => toy.isInStock)
+      );
       return this.toys.filter((toy) => regex.test(toy.name));
     },
   },

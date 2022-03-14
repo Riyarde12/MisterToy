@@ -1,7 +1,12 @@
 <template>
-  <section class="toy-list">
+  <section class="toy-list clean-list grid gap-1">
     <ul>
-      <toy-preview v-for="toy in toys" :toy="toy" :key="toy.id"></toy-preview>
+      <toy-preview
+        @removeToy="removeToy"
+        v-for="toy in toys"
+        :toy="toy"
+        :key="toy.id"
+      ></toy-preview>
     </ul>
   </section>
 </template>
@@ -22,7 +27,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    removeToy(toyId) {
+      this.$emit("removeToy", toyId);
+    },
+  },
   computed: {},
   unmounted() {},
 };

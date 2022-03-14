@@ -3,6 +3,7 @@ import home from '../views/home.vue';
 import about from '../views/about.vue';
 import toyApp from '../views/toy-app.vue';
 import toyDetails from '../views/toy-details.vue';
+import toyEdit from '../views/toy-edit.vue';
 
 
 const router = createRouter({
@@ -21,7 +22,7 @@ const router = createRouter({
     },
     {
       path: '/toy',
-      name: 'topApp',
+      name: 'toyApp',
       component: toyApp
 
     },
@@ -33,9 +34,8 @@ const router = createRouter({
     },
     {
       path: '/toy/edit/:id?',
-      name: 'toy-details',
-      component: toyDetails
-
+      name: 'toy-edit',
+      component: toyEdit
     },
   ]
 });

@@ -1,19 +1,22 @@
 <template>
-  <h1>this is Main app</h1>
+  <app-header />
+
   <router-view />
 </template>
 
 <script>
-export default {
-  name: 'App',
-  date(){
-    return{
+import appHeader from "./components/app-header.vue";
 
-    }
+export default {
+  name: "App",
+  created() {
+    this.$store.dispatch({ type: "loadToys" });
   },
-}
+  components: {
+    appHeader,
+  },
+};
 </script>
 
 <style>
-
 </style>

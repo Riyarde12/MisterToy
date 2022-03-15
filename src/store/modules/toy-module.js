@@ -44,5 +44,10 @@ export default {
                     commit({ type: 'saveToy', toy });
                 });
         },
+        getToy(context, { id }) {
+            if (id) return toyService.getById(id);
+            else return toyService.getEmptyToy();
+        }
+
     },
 };

@@ -8,7 +8,7 @@
       class="form-input"
       placeholder="Search name"
     />
-    <toggle-btn v-model="isInStock" />
+    <!-- <toggle-btn v-model="filterBy.isInStock" /> -->
   </section>
 </template>
 
@@ -35,8 +35,8 @@ export default {
   },
   watch: {
     filterBy: {
-      handler() {
-        this.setFilter;
+      handler(isInStock) {
+        this.setFilter();
       },
       deep: true,
     },

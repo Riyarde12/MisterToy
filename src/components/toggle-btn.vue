@@ -1,6 +1,6 @@
 <template>
   <label class="switch">
-    <input type="checkbox" :checked="isInStock" @change="toggleBtn" />
+    <input type="checkbox" :checked="modelValue" @change="toggleBtn" />
     <div></div>
   </label>
   <div><span class="fw-bold">In stock</span></div>
@@ -9,12 +9,11 @@
 <script>
 export default {
   props: {
-    isInStock: Boolean,
+    modelValue: Boolean,
   },
   methods: {
     toggleBtn() {
-      this.$emit("update:modelValue", !this.isInStock);
-      this.$emit("setFilter");
+      this.$emit("update:modelValue", !this.modelValue);
     },
   },
 };

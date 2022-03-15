@@ -6,6 +6,7 @@
   <div><span class="fw-bold">In stock</span></div>
 </template>
 
+
 <script>
 export default {
   props: {

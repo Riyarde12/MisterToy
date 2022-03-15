@@ -4,6 +4,7 @@ import { toyService } from '../../service/toy-service.js';
 export default {
     state: {
         toys: null,
+        filterBy: null,
     },
     getters: {
         toys(state) {
@@ -23,13 +24,14 @@ export default {
             if (idx !== -1) state.toys.splice(idx, 1, toy);
             else state.toys.push(toy);
         },
-        // setFilter(state, { filterBy }) {
-        //     state.filterBy = filterBy;
-        // },
+        setFilter(state, { filterBy }) {
+            state.filterBy = filterBy;
+        },
     },
     actions: {
-        loadToys({ commit }) {
-            toyService.query()
+        loadToys({ commit, state }) {
+            console.log(state.filterBy);
+            toyService.query(state.filterBy)
                 .then(toys => {
                     console.log('toys', toys);
                     commit({ type: 'setToys', toys });
@@ -51,13 +53,13 @@ export default {
             if (id) return toyService.getById(id);
             else return toyService.getEmptyToy();
         },
-        // filter({ commit, dispatch }, { filterBy }) {
-        //     // toyService.query(filterBy).then((toys) => {
-        //     //   commit({type: 'setToys', toys});
-        //     // });
-        //     commit({ type: 'setFilter', filterBy });
-        //     dispatch({ type: 'loadToys' });
-        // },
+        filter({ commit, dispatch }, { filterBy }) {
+            // toyService.query(filterBy).then((toys) => {
+            //   commit({type: 'setToys', toys});
+            // });
+            commit({ type: 'setFilter', filterBy });
+            dispatch({ type: 'loadToys' });
+        },
 
     },
 };

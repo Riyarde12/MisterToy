@@ -15,6 +15,7 @@
 import toyPreview from "../components/toy-preview.vue";
 
 export default {
+  name: "toy-list",
   props: {
     toys: {
       type: [Object],

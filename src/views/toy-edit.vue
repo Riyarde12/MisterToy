@@ -43,7 +43,7 @@ export default {
   created() {
     const { id } = this.$route.params;
     if (id) {
-      toyService.getById(+id).then((toy) => {
+      toyService.getById(id).then((toy) => {
         this.toyToEdit = toy;
       });
     } else this.toyToEdit = toyService.getEmptyToy();

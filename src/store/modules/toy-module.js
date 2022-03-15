@@ -23,6 +23,9 @@ export default {
             if (idx !== -1) state.toys.splice(idx, 1, toy);
             else state.toys.push(toy);
         },
+        // setFilter(state, { filterBy }) {
+        //     state.filterBy = filterBy;
+        // },
     },
     actions: {
         loadToys({ commit }) {
@@ -47,7 +50,14 @@ export default {
         getToy(context, { id }) {
             if (id) return toyService.getById(id);
             else return toyService.getEmptyToy();
-        }
+        },
+        // filter({ commit, dispatch }, { filterBy }) {
+        //     // toyService.query(filterBy).then((toys) => {
+        //     //   commit({type: 'setToys', toys});
+        //     // });
+        //     commit({ type: 'setFilter', filterBy });
+        //     dispatch({ type: 'loadToys' });
+        // },
 
     },
 };

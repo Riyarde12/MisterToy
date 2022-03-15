@@ -31,7 +31,9 @@ export default {
       this.$store.dispatch({ type: "removeToy", id: toyId });
     },
     setFilter(filterBy) {
+      console.log("filterBy", filterBy);
       this.filterBy = filterBy;
+      //  this.$store.dispatch({type: 'filter', filterBy});
     },
   },
   computed: {

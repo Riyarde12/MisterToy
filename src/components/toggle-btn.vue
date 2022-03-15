@@ -14,8 +14,11 @@ export default {
   methods: {
     toggleBtn() {
       this.$emit("update:modelValue", !this.modelValue);
+      this.$emit("change");
     },
   },
+  // emits: ["onChange", "update:modelValue", "onUpdate:modelValue"],
+  emits: ["update:modelValue", "onUpdate:modelValue", "change"],
 };
 </script>
 

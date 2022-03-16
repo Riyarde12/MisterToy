@@ -28,6 +28,7 @@ export default {
             state.filterBy = filterBy;
         },
     },
+    //TODO: add catch for all promises
     actions: {
         loadToys({ commit, state }) {
             console.log(state.filterBy);

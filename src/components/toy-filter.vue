@@ -9,36 +9,22 @@
       placeholder="Search name"
     />
     <toggle-btn @change="setFilter" v-model="filterBy.isInStock" />
-    <label>
-      Labels:
-      <select @change="setFilter" multiple v-model="filterBy.labels">
-        <option>On wheels</option>
-        <option>Box game</option>
-        <option>Art</option>
-        <option>Baby</option>
-        <option>Doll</option>
-        <option>Puzzle</option>
-        <option>Outdoor</option>
-      </select>
-    </label>
-    <label>
-      sortBy :
-      <select @change="setFilter" v-model="filterBy.sortBy">
-        <option value="time">Time</option>
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-      </select>
-    </label>
+    <select-cmp @change="setFilter" v-model="filterBy.labels"></select-cmp>
+    <options-cmp @change="setFilter" v-model="filterBy.sortBy"></options-cmp>
   </section>
 </template>
 
 <script>
-import toggleBtn from "../components/toggle-btn.vue";
+import toggleBtn from "./toggle-btn.vue";
+import selectCmp from "./select-cmp.vue";
+import optionsCmp from "./options-cmp.vue";
 
 export default {
   name: "toy-filter",
   components: {
     toggleBtn,
+    selectCmp,
+    optionsCmp,
   },
   data() {
     return {
@@ -52,14 +38,22 @@ export default {
   },
   methods: {
     setFilter() {
-      console.log(this.filterBy);
+      // console.log(this.filterBy);
       this.$emit("setFilter", JSON.parse(JSON.stringify(this.filterBy)));
     },
   },
+  // watch:{
+
+  // },
+  // selectedLabels(labels) {
+  //   console.log("hey!", labels);
+  //   this.filterBy.labels = labels;
+  // },
   // watch: {
   //   filterBy: {
-  //     handler(isInStock) {
-  //       this.setFilter;
+  //     handler() {
+  //       this.setFilter();
+  //       console.log("this.filterBy", this.filterBy);
   //     },
   //     deep: true,
   //   },

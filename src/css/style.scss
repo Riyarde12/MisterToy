@@ -1,11 +1,16 @@
 /** BASE **/
-@import './base/fonts';
-@import './base/util';
+@import "./base/fonts";
+@import "./base/util";
+@import "./base/layout.scss";
 
 /** VIEWS **/
-@import './views/app';
-@import './views/toy-app';
+@import "./views/app";
+@import "./views/toy-app";
 
 /** COMPONENTS **/
-@import './components/toy-list';
-@import './components/custom-dropdown';
+@import "./components/footer";
+@import "./components/header";
+
+@import "./components/home-page";
+@import "./components/toy-list";
+@import "./components/custom-dropdown";

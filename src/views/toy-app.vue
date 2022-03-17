@@ -1,5 +1,5 @@
 <template>
-  <section class="toy-app container flex flex-col gap-1">
+  <section class="toy-app container flex flex-col gap-1 page-layout">
     <button @click="goToEdit" class="btn btn-secondary">Add a new Toy</button>
     <toy-filter @setFilter="setFilter"></toy-filter>
     <toy-list @removeToy="removeToy" :toys="toys"></toy-list>

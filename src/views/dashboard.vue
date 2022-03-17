@@ -1,4 +1,5 @@
 <template>
+  <section class="page-layout"></section>
   <doughnut-controller></doughnut-controller>
 </template>
 

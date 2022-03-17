@@ -30,6 +30,19 @@ export default {
     },
     //TODO: add catch for all promises
     actions: {
+
+        // async loadToys({ commit, state }) {
+        //     try {
+        //         const toys = await toyService.query(state.filterBy);
+        //         commit({ type: 'setToys', toys });
+        //     }
+        //     catch (err) {
+        //         console.log('err', err);
+        //     }
+        //     // console.log('toys FROM LOAD', toys);
+        // },
+
+
         loadToys({ commit, state }) {
             console.log(state.filterBy);
             toyService.query(state.filterBy)

@@ -23,9 +23,10 @@
 
 export default {
   name: "select-cmp",
-  //   props: {
-  //     labels: Array,
-  //   },
+
+  // props: {
+  //   labels: [Object],
+  // },
   data() {
     return {
       labels: [],

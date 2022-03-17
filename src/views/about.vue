@@ -1,15 +1,12 @@
 <template>
-  <section class="about">
-      <h1>About Page</h1>
+  <section class="about page-layout">
+    <h1>About Page</h1>
   </section>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

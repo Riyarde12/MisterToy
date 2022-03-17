@@ -1,9 +1,11 @@
 <template>
-  <label class="switch">
-    <input type="checkbox" :checked="modelValue" @change="toggleBtn" />
-    <div></div>
-  </label>
-  <div><span class="fw-bold">In stock</span></div>
+  <section>
+    <label class="switch">
+      <input type="checkbox" :checked="modelValue" @change="toggleBtn" />
+      <div></div>
+    </label>
+    <div><span class="fw-bold">In stock</span></div>
+  </section>
 </template>
 
 
@@ -19,7 +21,7 @@ export default {
     },
   },
   // emits: ["onChange", "update:modelValue", "onUpdate:modelValue"],
-  emits: ["update:modelValue", "onUpdate:modelValue", "change"],
+  // emits: ["update:modelValue", "onUpdate:modelValue", "change"],
 };
 </script>
 

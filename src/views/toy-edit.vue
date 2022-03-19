@@ -40,13 +40,13 @@ export default {
       toyToEdit: null,
     };
   },
-  created() {
-    const { id } = this.$route.params;
-    if (id) {
-      toyService.getById(id).then((toy) => {
-        this.toyToEdit = toy;
-      });
-    } else this.toyToEdit = toyService.getEmptyToy();
+  async created() {
+    try {
+      const { id } = this.$route.params;
+      this.toyToEdit = await this.$store.dispatch({ type: "getToy", id });
+    } catch (err) {
+      console.log("err", err);
+    }
   },
   methods: {
     goBack() {
@@ -60,6 +60,7 @@ export default {
         });
     },
   },
+  computed: {},
 };
 </script>
 

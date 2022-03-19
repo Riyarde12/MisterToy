@@ -5,6 +5,7 @@ import toyApp from '../views/toy-app.vue';
 import toyDetails from '../views/toy-details.vue';
 import toyEdit from '../views/toy-edit.vue';
 import dashboard from '../views/dashboard.vue';
+import loginSignup from '../views/login-signup.vue';
 
 
 const router = createRouter({
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/login-signup',
+      name: 'login-signup',
+      component: loginSignup
     },
     {
       path: '/about',
@@ -43,6 +49,7 @@ const router = createRouter({
       name: 'dashboard',
       component: dashboard
     },
+
 
   ]
 });

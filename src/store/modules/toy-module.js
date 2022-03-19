@@ -1,15 +1,23 @@
 import { toyService } from '../../service/toy-service.js';
 
-
 export default {
     state: {
         toys: null,
         filterBy: null,
+        // toyToEdit: null,
+        userSignUp: {
+            fullname: "",
+            inputUsername: "",
+            inputPassword: "",
+        },
     },
     getters: {
         toys(state) {
-            return state.toys;
-        }
+            return JSON.parse(JSON.stringify(state.toys));
+        },
+        // toy(state) {
+        //     return JSON.parse(JSON.stringify(state.toyToEdit));
+        // },
     },
     mutations: {
         setToys(state, { toys }) {
@@ -19,61 +27,55 @@ export default {
             const idx = state.toys.findIndex(toy => toy._id === id);
             state.toys.splice(idx, 1);
         },
-        saveToy(state, { toy }) {
-            const idx = state.toys.findIndex(currToy => currToy._id === toy._id);
-            if (idx !== -1) state.toys.splice(idx, 1, toy);
-            else state.toys.push(toy);
+        saveToy(state, { savedToy }) {
+            const idx = state.toys.findIndex(currToy => currToy._id === savedToy._id);
+            if (idx !== -1) state.toys.splice(idx, 1, savedToy);
+            else state.toys.push(savedToy);
         },
         setFilter(state, { filterBy }) {
             state.filterBy = filterBy;
         },
-    },
-    //TODO: add catch for all promises
-    actions: {
-
-        // async loadToys({ commit, state }) {
-        //     try {
-        //         const toys = await toyService.query(state.filterBy);
-        //         commit({ type: 'setToys', toys });
-        //     }
-        //     catch (err) {
-        //         console.log('err', err);
-        //     }
-        //     // console.log('toys FROM LOAD', toys);
+        // setToyToEdit(state, { toy }) {
+        //     state.toyToEdit = toy;
         // },
+    },
+    actions: {
+        async loadToys({ commit, state }) {
+            try {
+                const toys = await toyService.query(state.filterBy);
 
-
-        loadToys({ commit, state }) {
-            console.log(state.filterBy);
-            toyService.query(state.filterBy)
-                .then(toys => {
-                    console.log('toys', toys);
-                    commit({ type: 'setToys', toys });
-                });
+                commit({ type: 'setToys', toys });
+            }
+            catch (err) {
+                console.log('err', err);
+            }
         },
-        removeToy({ commit }, { id }) {
-            toyService.remove(id)
-                .then(() => {
-                    commit({ type: 'removeToy', id });
-                });
+        async removeToy({ commit }, { id }) {
+            console.log('id', id);
+            try {
+                await toyService.remove(id);
+                commit({ type: 'removeToy', id });
+            }
+            catch (err) {
+                console.log('err', err);
+            }
         },
-        saveToy({ commit }, { toy }) {
-            toyService.save(toy)
-                .then(toy => {
-                    commit({ type: 'saveToy', toy });
-                });
+        async saveToy({ commit }, { toy }) {
+            console.log('toy', toy);
+            try {
+                const savedToy = await toyService.save(toy);
+                commit({ type: 'saveToy', savedToy });
+            }
+            catch (err) {
+                console.log('err', err);
+            }
         },
-        getToy(context, { id }) {
-            if (id) return toyService.getById(id);
-            else return toyService.getEmptyToy();
+        getToy({ commit, state }, { id }) {
+            return id ? toyService.getById(id) : toyService.getEmptyToy();
         },
         filter({ commit, dispatch }, { filterBy }) {
-            // toyService.query(filterBy).then((toys) => {
-            //   commit({type: 'setToys', toys});
-            // });
             commit({ type: 'setFilter', filterBy });
             dispatch({ type: 'loadToys' });
         },
-
     },
 };

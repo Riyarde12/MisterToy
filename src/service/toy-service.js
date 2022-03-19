@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const BASE_URL = (process.env.NODE_ENV !== 'development')
-    ? '/api/toy'
-    : '//localhost:3031/api/toy';
+    ? '/api/toy/'
+    : '//localhost:3030/api/toy/';
 
 // const BASE_URL = '//localhost:3031/api/toy/';
 
@@ -18,11 +18,17 @@ function query(filterBy) {
     return axios.get(BASE_URL, { params: filterBy }).then((res) => res.data);
 }
 
-function getById(toyId) {
-    return axios.get(BASE_URL + toyId).then((res) => res.data);
+async function getById(toyId) {
+    try {
+        const res = await axios.get(BASE_URL + toyId);
+        return res.data;
+    } catch (err) {
+        console.log('err', err);
+    }
 }
 
 function remove(toyId) {
+    console.log('toyId', toyId);
     return axios.delete(BASE_URL + toyId);
 }
 
@@ -41,7 +47,6 @@ function save(toy) {
 
 function getEmptyToy() {
     return {
-        _id: '',
         name: '',
         price: 0,
         labels: ['Doll', 'Battery Powered', 'Baby'],

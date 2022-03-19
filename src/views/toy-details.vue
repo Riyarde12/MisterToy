@@ -26,14 +26,12 @@ export default {
   name: "toy-detail",
   data() {
     return {
-      toy: null,
+      // toy: null,
     };
   },
   created() {
     const { toyId } = this.$route.params;
-    this.$store.dispatch({ type: "getToy", id: +toyId }).then((toy) => {
-      this.toy = toy;
-    });
+    this.$store.dispatch({ type: "getToy", id: toyId });
   },
   methods: {
     goBack() {
@@ -43,6 +41,9 @@ export default {
   computed: {
     labels() {
       return this.toy.labels;
+    },
+    toy() {
+      return this.$store.getters.toy;
     },
   },
 };

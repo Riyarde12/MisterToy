@@ -54,12 +54,13 @@ export default {
   methods: {
     async onLogin() {
       try {
-        const user = this.$store.dispatch({
+        const user = await this.$store.dispatch({
           type: "login",
           username: this.username,
           password: this.password,
         });
-        this.loggedInUser = user;
+        this.loggedInUser = user.data;
+        console.log("example", this.loggedInUser);
         console.log("username:", this.username);
         console.log("password:", this.password);
       } catch (err) {
@@ -74,9 +75,9 @@ export default {
     // },
   },
   computed: {
-    user() {
-      return this.$store.getters.loggedInUser;
-    },
+    // user() {
+    //   return this.$store.getters.loggedInUser;
+    // },
   },
 };
 </script>

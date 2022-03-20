@@ -1,6 +1,6 @@
 <template>
   <section v-if="toyToEdit">
-    <form @submit.prevent="saveToy" class="form">
+    <form class="form">
       <div class="form-control">
         <label for="txt" class="form-label">Toy Name</label>
         <input

@@ -1,5 +1,6 @@
 import { utilService } from './util-service.js';
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 const BASE_URL = (process.env.NODE_ENV !== 'development')
     ? '/api/auth/'
@@ -16,8 +17,9 @@ async function login(username, password) {
     console.log('username', username);
     console.log('password', password);
     try {
-        const loggedinUser = await axios.post(BASE_URL + 'login', { username, password });
-        return loggedinUser;
+        const loggedinUser = await axios.post(`${BASE_URL}/login`, { username, password });
+        utilService.saveToStorage('loggedin', loggedinUser.data);
+        return loggedinUser.data;
     } catch (err) {
         console.log('err', err);
     }
@@ -25,7 +27,7 @@ async function login(username, password) {
 
 function signup(fullname, username, password) {
     console.log('password from front service ', password);
-    return axios.post(BASE_URL + 'signup', { fullname, username, password })
+    return axios.post(`${BASE_URL}/signup`, { fullname, username, password })
         .then(res => res.data)
         .then(user => {
             utilService.saveToStorage('logginUser', user);
@@ -35,7 +37,7 @@ function signup(fullname, username, password) {
 
 function logout() {
 
-    return axios.post(BASE_URL + 'logout')
+    return axios.post(`${BASE_URL}/logout`)
         .then(() => {
             utilService.saveToStorage('loggedinUser', '');
             return '';

@@ -8,6 +8,7 @@ import dashboard from '../views/dashboard.vue';
 import loginSignup from '../views/login-signup.vue';
 
 
+
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
@@ -49,8 +50,6 @@ const router = createRouter({
       name: 'dashboard',
       component: dashboard
     },
-
-
   ]
 });
 
